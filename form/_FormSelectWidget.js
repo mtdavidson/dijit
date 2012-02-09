@@ -379,15 +379,13 @@ return declare("dijit.form._FormSelectWidget", _FormValueWidget, {
 		if(!lang.isArray(val)){
 			val = [val];
 		}
-		if(val && val[0]){
-			array.forEach(this._getChildren(), function(child){
-				var isSelected = array.some(val, function(v){
-					return child.option && (v === child.option.value);
-				});
-				domClass.toggle(child.domNode, this.baseClass + "SelectedOption", isSelected);
-				child.domNode.setAttribute("aria-selected", isSelected);
-			}, this);
-		}
+		array.forEach(this._getChildren(), function(child){
+			var isSelected = array.some(val, function(v){
+				return child.option && (v === child.option.value);
+			});
+			domClass.toggle(child.domNode, this.baseClass + "SelectedOption", isSelected);
+			child.domNode.setAttribute("aria-selected", isSelected);
+		}, this);
 	},
 
 	_getValueFromOpts: function(){
